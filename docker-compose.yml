@@ -1,0 +1,16 @@
+version: '3'
+services:
+  mariadb:
+    image: 'mariadb/server:10.5'
+    restart: 'always'
+    volumes:
+      - mariadb-volume:/var/lib/mariadb/data
+    ports:
+      - 3333:3306
+    environment:
+      - MARIADB_ROOT_PASSWORD=testeai
+      - MARIADB_DATABASE=ai_database
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+volumes:
+  mariadb-volume:
