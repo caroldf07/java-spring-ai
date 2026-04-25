@@ -17,7 +17,7 @@ class AskController(chatClientBuilder: ChatClient.Builder) {
                 .prompt()
                 .user("Tell me about the lilies")
                 .call()
-                .chatResponse().result.output.content
+                .chatResponse()?.result?.output?.content ?: ""
     }
 
     @PostMapping("/ask")
@@ -26,6 +26,6 @@ class AskController(chatClientBuilder: ChatClient.Builder) {
                     .prompt()
                     .user(question.question)
                     .call()
-                    .content()
+                    .content() ?: ""
     )
 }
