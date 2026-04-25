@@ -6,6 +6,9 @@ jobs:
       - image: cimg/openjdk:17.0
     steps:
       - checkout
+      - run:
+          name: Grant execute permission
+          command: chmod +x gradlew
       - restore_cache:
           keys:
             - v1-gradle-{{ checksum "build.gradle.kts" }}
@@ -25,6 +28,9 @@ jobs:
       - image: cimg/openjdk:17.0
     steps:
       - checkout
+      - run:
+          name: Grant execute permission
+          command: chmod +x gradlew
       - run:
           name: OWASP Dependency Check
           command: |
